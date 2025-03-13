@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package tts.v1;
+
+option go_package = "github.com/AzzamAljandali96/tts-service/proto/tts/v1";
+
+service TTSService {
+  rpc Synthesize(SynthesizeRequest) returns (stream SynthesizeResponse) {}
+}
+
+message SynthesizeRequest {
+  string text = 1;
+  string language_code = 2;
+  string voice_name = 3;
+}
+
+message SynthesizeResponse {
+  // Audio content in specified format (e.g., WAV, MP3)
+  bytes audio_chunk = 1;
+}
